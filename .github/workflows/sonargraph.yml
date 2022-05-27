@@ -43,6 +43,5 @@ jobs:
         uses: sonargraph/sonargraph-maven-action@v1.0
         with:
           org: Concordia ASA Team-L
-          activation_code: 7971-64A0-D58E-5DFB
       - name: Run migrations
         run: make migrateup
