@@ -43,5 +43,3 @@ jobs:
         uses: sonargraph/sonargraph-maven-action@v1.0
         with:
           org: Concordia ASA Team-L
-      - name: Run migrations
-        run: make migrateup
