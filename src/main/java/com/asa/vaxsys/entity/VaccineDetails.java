@@ -1,7 +1,5 @@
 package com.asa.vaxsys.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -22,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VaccineDetails {
+public class VaccineDetails extends BaseModel{
 
 	@JsonProperty("name")
 	@Column(unique = true)
@@ -38,10 +36,11 @@ public class VaccineDetails {
     private Integer numberOfDoses;
     
     @JsonProperty("description")
+    @Column(columnDefinition="text")
     private String description;
 
     @JsonProperty("applicable_disease")
-    private List<String> applicableDisease;
+    private String applicableDisease;
 
     @JsonProperty("vaccine_type")
     private String vaccine_type;
