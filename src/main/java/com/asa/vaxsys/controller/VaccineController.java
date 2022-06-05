@@ -1,5 +1,8 @@
 package com.asa.vaxsys.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,20 +40,44 @@ public class VaccineController {
     	
         if(vaccineDetails != null) {
         	
-            return new ResponseDto<>(VaccineCreationResponseDto.builder()
-            		.vaccineCreationResult(true)
-            		.name(vaccineDetails.getName())
-            		.description(vaccineDetails.getDescription())
-            		.eligibilityAgeStart(vaccineDetails.getEligibilityAgeStart())
-            		.eligibilityAgeEnd(vaccineDetails.getEligibilityAgeEnd())
-            		.vaccineType(vaccineDetails.getVaccine_type())
-            		.numberOfDoses(vaccineDetails.getNumberOfDoses())
-            		.build());
+           return createResponse(vaccineDetails);
             		
         }
         else {
             return new ResponseDto<>(VaccineCreationResponseDto.builder().vaccineCreationResult(false).build());
         }
+    }
+    
+    private ResponseDto<VaccineCreationResponseDto> createResponse(VaccineDetails vaccineDetails){
+    	
+    	 return new ResponseDto<>(VaccineCreationResponseDto.builder()
+         		.vaccineCreationResult(true)
+         		.name(vaccineDetails.getName())
+         		.description(vaccineDetails.getDescription())
+         		.eligibilityAgeStart(vaccineDetails.getEligibilityAgeStart())
+         		.eligibilityAgeEnd(vaccineDetails.getEligibilityAgeEnd())
+         		.vaccineType(vaccineDetails.getVaccine_type())
+         		.numberOfDoses(vaccineDetails.getNumberOfDoses())
+         		.applicableDisease(vaccineDetails.getApplicableDisease())
+         		.build());
+    
+    }
+    
+    @RequestMapping(method = RequestMethod.GET,value = UriConstants.GET_ALL_DATA)
+    private List<ResponseDto<VaccineCreationResponseDto>> getAllVaccines(){
+    	
+    	List<VaccineDetails> allVaccineDetails = vaccineHelper.getAllVaccineDetails();
+    	
+    	List<ResponseDto<VaccineCreationResponseDto>> listOfVaccines = new ArrayList<>();
+    	 
+    	for(VaccineDetails vaccineDetails : allVaccineDetails) {
+    		
+    		listOfVaccines.add(createResponse(vaccineDetails));
+    		
+    	}
+    	
+    	return listOfVaccines;
+    	
     }
 	
 

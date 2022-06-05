@@ -1,5 +1,8 @@
 package com.asa.vaxsys.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.asa.vaxsys.entity.VaccineDetails;
@@ -48,5 +51,18 @@ public class VaccineService {
     	
         return vaccineDetails;
     }
+
+
+	public List<VaccineDetails> getAllVaccineDetails() {
+		// TODO Auto-generated method stub
+		
+		List<VaccineDetails> allVaccineDetails = new ArrayList<>();
+		
+		for(VaccineDetails vaccine : vaccineRepository.findAll()) {
+			allVaccineDetails.add(vaccine);
+		}
+		
+		return allVaccineDetails;
+	}
 
 }

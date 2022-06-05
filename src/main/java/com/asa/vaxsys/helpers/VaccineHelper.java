@@ -1,5 +1,7 @@
 package com.asa.vaxsys.helpers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +37,11 @@ public class VaccineHelper {
         		vaccineCreationRequestDto.getVaccine_type());
         
     }
+
+
+	public List<VaccineDetails> getAllVaccineDetails() {
+		
+		return vaccineService.getAllVaccineDetails();
+	}
 
 }
