@@ -19,7 +19,9 @@ public class VaccineCenterService {
 		this.vaccineCenterRepository = vaccineCenterRepository;
 	}
 
-
+	public VaccineCenter findById(Integer id){
+		return vaccineCenterRepository.findFirstById(id);
+	}
 	
 	public VaccineCenter createVaccineCenter(String name,String contactNumber,String address,String workingHours,String workingDays){
 

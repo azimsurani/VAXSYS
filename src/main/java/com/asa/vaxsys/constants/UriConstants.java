@@ -16,4 +16,6 @@ public class UriConstants {
 
     public static final String registerInventory = "/register_inventory";
 
+    public static final String authenticateUser = "/authenticate_user";
+
 }

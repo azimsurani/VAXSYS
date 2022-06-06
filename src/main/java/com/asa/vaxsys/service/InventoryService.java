@@ -1,10 +1,9 @@
 package com.asa.vaxsys.service;
 
-import com.asa.vaxsys.entity.User;
+import com.asa.vaxsys.entity.VaccineCenter;
+import com.asa.vaxsys.entity.VaccineDetails;
 import com.asa.vaxsys.entity.VaccineInventory;
-import com.asa.vaxsys.enums.UserType;
 import com.asa.vaxsys.repository.InventoryRepository;
-import com.asa.vaxsys.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,13 +14,19 @@ public class InventoryService {
 
     private InventoryRepository inventoryRepository;
 
+    private VaccineCenterService vaccineCenterService;
+
+    private VaccineService vaccineService;
+
     /**
      * Instantiates a new Users service.
      *
      * @param inventoryRepository the user repository
      */
-    public InventoryService(InventoryRepository inventoryRepository){
+    public InventoryService(InventoryRepository inventoryRepository, VaccineCenterService vaccineCenterService, VaccineService vaccineService){
         this.inventoryRepository = inventoryRepository;
+        this.vaccineCenterService = vaccineCenterService;
+        this.vaccineService = vaccineService;
     }
 
     /**
@@ -34,10 +39,12 @@ public class InventoryService {
      * @return the inventory
      */
     public VaccineInventory createInventory(Integer id, Integer vaccination_centre_id, Integer vaccination_detail_id, Long stock_available){
+        VaccineCenter vaccineCenter = vaccineCenterService.findById(vaccination_centre_id);
+        VaccineDetails vaccineDetails = vaccineService.findById(vaccination_detail_id);
         VaccineInventory inventory = VaccineInventory.builder()
                 .id(id)
-                .vaccination_centre_id(vaccination_centre_id)
-                .vaccination_detail_id(vaccination_detail_id)
+                .vaccinationCentre(vaccineCenter)
+                .vaccinationDetail(vaccineDetails)
                 .stock_available(stock_available)
                 .build();
         inventoryRepository.save(inventory);

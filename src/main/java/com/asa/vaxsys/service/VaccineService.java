@@ -21,7 +21,10 @@ public class VaccineService {
     public VaccineService(VaccineRepository vaccineRepository){
         this.vaccineRepository = vaccineRepository;
     }
-    	
+
+	public VaccineDetails findById(Integer id){
+		return vaccineRepository.findFirstById(id);
+	}
     
     /**
      * Create new vaccine
