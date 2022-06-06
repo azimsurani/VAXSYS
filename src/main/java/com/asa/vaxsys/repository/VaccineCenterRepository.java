@@ -6,4 +6,6 @@ import com.asa.vaxsys.entity.VaccineCenter;
 
 public interface VaccineCenterRepository extends CrudRepository<VaccineCenter, Integer> {
 
+    VaccineCenter findFirstById(Integer id);
+
 }
