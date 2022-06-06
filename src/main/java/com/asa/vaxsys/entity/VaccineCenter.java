@@ -27,7 +27,7 @@ public class VaccineCenter extends BaseModel{
     private String name;
 
     @JsonProperty("contact_number")
-    private Integer contactNumber;
+    private String contactNumber;
      
     @JsonProperty("description")
     @Column(columnDefinition="text")
