@@ -1,9 +1,7 @@
 package com.asa.vaxsys.controller;
 
 import com.asa.vaxsys.constants.UriConstants;
-import com.asa.vaxsys.dto.ResponseDto;
-import com.asa.vaxsys.dto.UserCreationRequestDto;
-import com.asa.vaxsys.dto.UserCreationResponseDto;
+import com.asa.vaxsys.dto.*;
 import com.asa.vaxsys.entity.User;
 import com.asa.vaxsys.helpers.UsersHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Objects;
 
 /**
  * The type Users controller.
@@ -34,7 +34,7 @@ public class UsersController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = UriConstants.registerUser)
-    private ResponseDto<UserCreationResponseDto> register_user(@RequestBody UserCreationRequestDto userCreationRequestDto){
+    private ResponseDto<UserCreationResponseDto> registerUser(@RequestBody UserCreationRequestDto userCreationRequestDto){
         User user = usersHelper.registerUser(userCreationRequestDto);
         if(user != null) {
             return new ResponseDto<>(UserCreationResponseDto.builder().userCreationResult(true)
@@ -45,6 +45,12 @@ public class UsersController {
         else {
             return new ResponseDto<>(UserCreationResponseDto.builder().userCreationResult(false).build());
         }
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = UriConstants.authenticateUser)
+    private ResponseDto<UserAuthenticationResponseDto> authenticateUser(@RequestBody UserAuthenticationRequestDto userAuthenticationRequestDto){
+        boolean authentication = usersHelper.authenticateUser(userAuthenticationRequestDto);
+        return new ResponseDto<>(UserAuthenticationResponseDto.builder().authentication(authentication).build());
     }
 
 
