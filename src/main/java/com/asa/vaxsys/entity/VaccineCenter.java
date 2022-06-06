@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * Vaccine Details Model
+ * Vaccine Center Model
  */
 @Entity
 @Table(name = "vaccine_center")
