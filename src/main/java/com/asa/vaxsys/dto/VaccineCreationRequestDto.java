@@ -1,12 +1,5 @@
 package com.asa.vaxsys.dto;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Column;
-
-import org.hibernate.annotations.Type;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

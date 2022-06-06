@@ -1,36 +1,23 @@
-package com.asa.vaxsys.entity;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+package com.asa.vaxsys.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * Vaccine Center Model
- */
-@Entity
-@Table(name = "vaccine_center")
 @Getter
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class VaccineCenter extends BaseModel{
+@NoArgsConstructor
+public class VaccineCenterRequestDTO {
 	
 	@JsonProperty("name")
-	@Column(unique = true)
     private String name;
 
     @JsonProperty("contact_number")
     private String contactNumber;
      
     @JsonProperty("address")
-    @Column(columnDefinition="text")
     private String address;
 
     @JsonProperty("working_hours")
@@ -38,5 +25,5 @@ public class VaccineCenter extends BaseModel{
     
     @JsonProperty("working_days")
     private String workingDays;
-    
+
 }
