@@ -21,7 +21,7 @@ public class VaccineCenterService {
 
 
 	
-	public VaccineCenter createVaccine(String name,String contactNumber,String address,String workingHours,String workingDays){
+	public VaccineCenter createVaccineCenter(String name,String contactNumber,String address,String workingHours,String workingDays){
 
 		VaccineCenter vaccineCenter = VaccineCenter.builder()
 				.name(name)

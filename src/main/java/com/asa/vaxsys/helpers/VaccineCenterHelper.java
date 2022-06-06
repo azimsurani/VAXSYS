@@ -26,9 +26,9 @@ public class VaccineCenterHelper {
     }
 
     
-    public VaccineCenter createVaccine(VaccineCenterRequestDTO vaccineCenterRequestDTO){
+    public VaccineCenter createVaccineCenter(VaccineCenterRequestDTO vaccineCenterRequestDTO){
     	
-        return vaccineCenterService.createVaccine(vaccineCenterRequestDTO.getName(), 
+        return vaccineCenterService.createVaccineCenter(vaccineCenterRequestDTO.getName(), 
         		vaccineCenterRequestDTO.getContactNumber(),
         		vaccineCenterRequestDTO.getAddress(),
         		vaccineCenterRequestDTO.getWorkingHours(),
