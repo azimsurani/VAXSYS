@@ -44,4 +44,8 @@ public class UsersService {
         return user;
     }
 
+    public User findUser(String emailAddress, String password){
+        return userRepository.findFirstByEmailAddressAndPassword(emailAddress, password);
+    }
+
 }

@@ -14,4 +14,6 @@ public class UriConstants {
     
     public static final String GET_ALL_DATA = "/get_all_data";
 
+    public static final String authenticateUser = "/authenticate_user";
+
 }

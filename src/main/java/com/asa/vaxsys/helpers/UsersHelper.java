@@ -1,10 +1,13 @@
 package com.asa.vaxsys.helpers;
 
+import com.asa.vaxsys.dto.UserAuthenticationRequestDto;
 import com.asa.vaxsys.dto.UserCreationRequestDto;
 import com.asa.vaxsys.entity.User;
 import com.asa.vaxsys.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 /**
  * The type Users helper.
@@ -36,6 +39,11 @@ public class UsersHelper {
                 userCreationRequestDto.getPassword(),
                 userCreationRequestDto.getPhoneNumber(),
                 userCreationRequestDto.getUserType());
+    }
+
+    public boolean authenticateUser(UserAuthenticationRequestDto userAuthenticationRequestDto){
+        User user = usersService.findUser(userAuthenticationRequestDto.getEmailAddress(), userAuthenticationRequestDto.getPassword());
+        return Objects.nonNull(user);
     }
 
 }
